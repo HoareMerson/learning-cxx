@@ -1,4 +1,5 @@
 #include "../exercise.h"
+#include <string.h>
 
 // READ: 复制构造函数 <https://zh.cppreference.com/w/cpp/language/copy_constructor>
 // READ: 函数定义（显式弃置）<https://zh.cppreference.com/w/cpp/language/function>
@@ -16,10 +17,8 @@ public:
     }
 
     // TODO: 实现复制构造器
-    DynFibonacci(DynFibonacci const &other){
-        cache = new size_t[other.cached];
-        memcpy(cache, other.cache, sizeof(size_t)*other.cached);
-        cached = other.cached;
+    DynFibonacci(DynFibonacci const &other): cache(new size_t[other.cached]), cached(other.cached) {
+        std::memcpy(cache, other.cache, sizeof(size_t)*other.cached);
     }
 
     // TODO: 实现析构器，释放缓存空间
